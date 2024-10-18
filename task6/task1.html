@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Color Selector</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.5s ease;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Select a Theme Color</h1>
+    <select id="themeSelector">
+        <option value="white">White</option>
+        <option value="lightblue">Light Blue</option>
+        <option value="lightgreen">Light Green</option>
+        <option value="lightcoral">Light Coral</option>
+        <option value="lightgrey">Light Grey</option>
+    </select>
+
+    <script>
+        const themeSelector = document.getElementById('themeSelector');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedColor = localStorage.getItem('themeColor');
+            if (savedColor) {
+                document.body.style.backgroundColor = savedColor;
+                themeSelector.value = savedColor;
+            }
+        });
+
+        themeSelector.addEventListener('change', () => {
+            const selectedColor = themeSelector.value;
+            document.body.style.backgroundColor = selectedColor;
+            localStorage.setItem('themeColor', selectedColor);
+        });
+    </script>
+</body>
+</html>
